@@ -41,13 +41,30 @@ When you complete the OAuth consent form, the Worker stores `{upstream_url, head
 
 PKCE S256 is the only supported challenge method. The proxy is a public client (`token_endpoint_auth_methods_supported: ["none"]`).
 
-## Quick start (Cloudflare Dashboard, no Wrangler required)
+## Deploy from the Cloudflare Dashboard (GitHub integration)
 
-1. **Create a KV namespace** — Workers & Pages → KV → Create namespace (name it anything). Copy the ID.
-2. **Create a Worker** — Workers & Pages → Create → Create Worker. Paste a bundled build of this repo (or just the contents of `src/` via the quick editor). Save & Deploy.
-3. **Bind the KV namespace** — open the Worker → Settings → Variables → KV Namespace Bindings → Add. Use **binding name `KV`** and pick the namespace from step 1.
-4. **Set the admin password** — same Settings page → Variables → Environment Variables → Add. Use **variable name `ADMIN_SECRET`** and mark it as a **Secret**. Choose a strong password.
-5. **Note your worker URL** — something like `https://mcp-oauth-proxy.<your-subdomain>.workers.dev`.
+Push the repo to GitHub and connect it from the Cloudflare dashboard — no local Wrangler required. Useful inside devcontainers or anywhere `wrangler login` is inconvenient. `wrangler.toml` is checked in, so there is nothing extra to configure; fork the repo if you don't have your own copy.
+
+### 1. Connect the repository
+
+1. **Create the application** — Workers & Pages → Create application → Connect to Git → select GitHub.
+2. **Pick the repository** — link your GitHub account and select this repo.
+3. **Build settings** — leave Build command empty; keep Deploy command as the default `npx wrangler deploy`.
+4. **Deploy** — the first build runs automatically. Every push to `main` triggers a redeploy.
+
+### 2. Bind a KV namespace
+
+1. **Create the namespace** — Storage & Databases → Workers KV → Create Instance (name it anything).
+2. **Open the binding editor** — Worker → Settings → Bindings → Add → KV namespace.
+3. **Bind it** — set binding name to `KV` and pick the namespace from step 1.
+
+### 3. Set the admin secret
+
+1. **Open the variable editor** — same Worker → Settings → Variables and Secrets → Add.
+2. **Choose Secret** — set Type to **Secret** (not Text).
+3. **Register the value** — variable name `ADMIN_SECRET`, value a sufficiently long random string. Save.
+
+Your worker URL will look like `https://mcp-oauth-proxy.<your-subdomain>.workers.dev`.
 
 ### Quick start (Wrangler)
 
