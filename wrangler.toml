@@ -1,0 +1,14 @@
+name = "mcp-oauth-proxy"
+main = "src/index.ts"
+compatibility_date = "2025-04-01"
+
+# Create a KV namespace in the Cloudflare dashboard (or with
+#   wrangler kv namespace create KV
+# ) and paste the id below. Then uncomment this block.
+#
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "<your_kv_namespace_id>"
+#
+# ADMIN_SECRET is a required Secret, not a plain var. Set it with:
+#   wrangler secret put ADMIN_SECRET

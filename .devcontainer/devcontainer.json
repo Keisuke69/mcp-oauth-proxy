@@ -1,0 +1,34 @@
+{
+  "name": "mcp-oauth-proxy",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "npm install",
+  "forwardPorts": [8787],
+  "portsAttributes": {
+    "8787": {
+      "label": "wrangler dev",
+      "onAutoForward": "notify"
+    }
+  },
+  "remoteUser": "node",
+  "containerEnv": {
+    "WRANGLER_SEND_METRICS": "false"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "vitest.explorer",
+        "cloudflare.vscode-cloudflare-workers",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "editor.formatOnSave": false,
+        "typescript.tsdk": "node_modules/typescript/lib"
+      }
+    }
+  }
+}
