@@ -122,14 +122,11 @@ Project layout:
 
 ```
 src/
-  index.ts       fetch handler / router
-  oauth.ts       OAuth endpoints (discovery, register, authorize, token)
+  index.ts       fetch handler / router (defines Env)
+  oauth.ts       OAuth endpoints (discovery, register, authorize, token; defines Association, StoredCode)
   proxy.ts       /mcp proxy
   consent.ts     HTML consent form
-  kv.ts          typed KV wrapper
-  crypto.ts      PKCE S256, random generators
-  http.ts        json()/html() Response helpers
-  types.ts       Env, Association, StoredCode
+  util.ts        json()/html() helpers, PKCE S256, random generators
 test/
   crypto.test.ts
   oauth.test.ts

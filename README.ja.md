@@ -122,14 +122,11 @@ npm run deploy:dry     # wrangler deploy --dry-run
 
 ```
 src/
-  index.ts       fetch ハンドラ / ルーター
-  oauth.ts       OAuth エンドポイント群 (discovery, register, authorize, token)
+  index.ts       fetch ハンドラ / ルーター（Env 型を定義）
+  oauth.ts       OAuth エンドポイント群 (discovery, register, authorize, token; Association / StoredCode 型を定義)
   proxy.ts       /mcp プロキシ
   consent.ts     同意画面 HTML
-  kv.ts          型付き KV ラッパー
-  crypto.ts      PKCE S256 / 乱数生成
-  http.ts        json() / html() レスポンスヘルパー
-  types.ts       Env, Association, StoredCode
+  util.ts        json() / html() ヘルパー、PKCE S256、乱数生成
 test/
   crypto.test.ts
   oauth.test.ts
